@@ -1,10 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router";
-import { CartContext } from "./Context";
+import SingleProduct from "./SingleProduct";
+import {CartState} from '../Components/Context'
+import { UserContext } from "./UserContext";
+
 function Home() {
   const history = useHistory();
   const [data, setData] = useState([]);
-  const [isLoggedIn, setLoggedIn] = useContext(CartContext);
+  const [products, setProducts] = useState([]);
+  const {state} = CartState();
+  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
+
+  console.log("This is state",state)
   const validateUser = async () => {
     try {
       const res = await fetch("/home", {
@@ -15,9 +22,11 @@ function Home() {
         },
         credentials: "include",
       });
+    
       const ResData = await res.json();
       setData(ResData);
-      setLoggedIn(true);
+      setIsLoggedIn(true);
+      
       console.log(ResData);
     } catch (err) {
       history.push("/login");
@@ -26,7 +35,26 @@ function Home() {
     }
   };
 
+  const getAllProducts = async()=>{
+    try {
+      const res = await fetch("product/get", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const resData = await res.json();
+      setProducts(resData)
+      console.log("Products",products)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
+    getAllProducts();
     validateUser();
   }, []);
   return (
@@ -39,6 +67,18 @@ function Home() {
       <h4>{data.phone}</h4>
       <h4>{data._id}</h4></> : <></>
     }
+
+<div className="product_container">
+{
+ products.map((product)=>{
+   return <SingleProduct product = {product} key={product._id}/>
+     
+  
+  })
+}
+  </div>
+
+
     
     </>
   );

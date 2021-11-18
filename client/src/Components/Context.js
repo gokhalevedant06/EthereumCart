@@ -1,9 +1,16 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState,useReducer, useContext } from "react";
+import { cartReducer } from "./Reducers";
 
-export const CartContext = createContext();
+const Cart = createContext();
+const Context = ({ children }) => {
+  const [state, dispatch] = useReducer(cartReducer, {
+    cart:[]
+  })
+  return(
+  <Cart.Provider value={{state,dispatch}}>{children}</Cart.Provider>
+)};
+export default Context;
 
-export const CartProvider = (props) => {
-    const [cart, setCart] = useState([]);
-    const [isLoggedIn,setIsLoggedIn] = useState(false);
-  return <CartContext.Provider value={[cart,setCart],[isLoggedIn,setIsLoggedIn]}>{props.children}</CartContext.Provider>;
-};
+export const CartState = ()=>{
+  return useContext(Cart)
+}

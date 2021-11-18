@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./css/style.css";
-import { CartContext } from "./Context";
+import { UserContext } from "./UserContext";
+import { CartState } from "./Context";
 function Navbar() {
-  const [cart] = useContext(CartContext);
-  const [isLoggedIn, setLoggedIn] = useContext(CartContext);
+  const {isLoggedIn} = useContext(UserContext)
   const [click, setClick] = useState(false);
+  const {state}  = CartState();
   const handleClick = () => {
     setClick(!click);
   };
@@ -32,15 +33,7 @@ function Navbar() {
               <p>Home</p>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/products"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              <p>Products </p>
-            </Link>
-          </li>
+          
 
           {isLoggedIn === true ? (
             <>
@@ -50,7 +43,7 @@ function Navbar() {
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  <p>Cart </p>
+                  <p>Cart [{state.cart.length}] </p>
                 </Link>
               </li>{" "}
               <li className="nav-item">

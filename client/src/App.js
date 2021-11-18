@@ -5,16 +5,17 @@ import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Cart from "./Components/Cart";
 import Logout from "./Components/Logout";
-import Products from "./Components/Products";
 import "./App.css";
-import { CartProvider } from "./Components/Context";
+import { UserContext } from "./Components/UserContext";
+import { useState } from "react";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
-    <CartProvider>
-      <Router>
-        <Navbar />
+      <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <Router>
+          <Navbar />
           <Switch>
             <Route path="/" exact>
               <Home />
@@ -31,13 +32,9 @@ function App() {
             <Route path="/logout" exact>
               <Logout />
             </Route>
-            <Route path="/products" exact>
-              <Products />
-            </Route>
-         
           </Switch>
-      </Router>
-</CartProvider>
+        </Router>
+      </UserContext.Provider>
     </>
   );
 }

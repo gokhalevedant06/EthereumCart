@@ -1,11 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import axios from "axios";
 import { useHistory } from 'react-router'
 import { Link } from "react-router-dom";
-
-
+import { UserContext } from './UserContext';
 function Login() {
   const history = useHistory();
+  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
     const [loginUser, setLoginUser] = useState();
     const onChange = (e) => {
       setLoginUser({
@@ -23,6 +23,7 @@ function Login() {
         });
         console.log(response);
         window.alert(response.data)
+        setIsLoggedIn(true)
         history.push('/');
       } catch (error) {
         window.alert("Try Again!")
