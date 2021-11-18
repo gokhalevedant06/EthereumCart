@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router";
 import { CartContext } from "./Context";
@@ -21,9 +20,9 @@ function Home() {
       setLoggedIn(true);
       console.log(ResData);
     } catch (err) {
+      history.push("/login");
       console.log(err);
       window.alert("You need to be logged in to access this page");
-      history.push("/login");
     }
   };
 
@@ -32,10 +31,15 @@ function Home() {
   }, []);
   return (
     <>
+    {
+      isLoggedIn ? <><h1>This is home page</h1>
       <h4>{data.name}</h4>
       <h4>{data.email}</h4>
+      <h4>{data.isAdmin}</h4>
       <h4>{data.phone}</h4>
-      <h4>{data._id}</h4>
+      <h4>{data._id}</h4></> : <></>
+    }
+    
     </>
   );
 }

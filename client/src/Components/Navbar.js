@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./css/style.css";

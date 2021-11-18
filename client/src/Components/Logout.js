@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React,{useEffect, useContext} from 'react'
 import { useHistory } from 'react-router'
 import { CartContext } from "./Context";
