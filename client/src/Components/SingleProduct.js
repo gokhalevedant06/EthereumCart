@@ -8,27 +8,27 @@ const SingleProduct = ({ product }) => {
   } = CartState();
   return (
     <>
-      <div class="product-card">
-        <div class="logo-cart">
-          <i class="bx bx-shopping-bag"></i>
+      <div className="product-card">
+        <div className="logo-cart">
+          <i className="bx bx-shopping-bag"></i>
         </div>
-        <div class="main-images">
-          <img src={product.imageName} />
+        <div className="main-images">
+          <img src={product.imageName} alt={product.productName} />
         </div>
-        <div class="shoe-details">
-          <span class="shoe_name">{product.productName}</span>
+        <div className="shoe-details">
+          <span className="shoe_name">{product.productName}</span>
           <p>Category: {product.category}</p>
         </div>
         <div>
           <Rating rating={product.rating} />
         </div>
-        <div class="color-price">
-          <div class="price">
-            <span class="price_num">${product.price}</span>
+        <div className="color-price">
+          <div className="price">
+            <span className="price_num">${product.price}</span>
           </div>
         </div>
-        <div class="button">
-          <div class="button-layer"></div>
+        <div className="button">
+          <div className="button-layer"></div>
           
               {
                   !state.cart.some(p => p._id===product._id) ? <><button onClick={()=>{

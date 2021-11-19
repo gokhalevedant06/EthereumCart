@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import "./css/style.css";
 import { UserContext } from "./UserContext";
 import { CartState } from "./Context";
+import { AdminContext } from "./AdminContext";
 function Navbar() {
-  const {isLoggedIn} = useContext(UserContext)
+  const { isLoggedIn } = useContext(UserContext);
+  const { isAdmin } = useContext(AdminContext);
   const [click, setClick] = useState(false);
-  const {state}  = CartState();
+  const { state } = CartState();
   const handleClick = () => {
     setClick(!click);
   };
@@ -33,7 +35,6 @@ function Navbar() {
               <p>Home</p>
             </Link>
           </li>
-          
 
           {isLoggedIn === true ? (
             <>
@@ -46,6 +47,21 @@ function Navbar() {
                   <p>Cart [{state.cart.length}] </p>
                 </Link>
               </li>{" "}
+              {isAdmin ? (
+                <>
+                  <li className="nav-item">
+                    <Link
+                      to="/manage"
+                      className="nav-links"
+                      onClick={closeMobileMenu}
+                    >
+                      <p>Manage</p>
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <></>
+              )}
               <li className="nav-item">
                 <Link
                   to="/logout"

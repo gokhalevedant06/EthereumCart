@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router";
 import SingleProduct from "./SingleProduct";
-import {CartState} from '../Components/Context'
 import { UserContext } from "./UserContext";
-
+import { AdminContext } from "./AdminContext";
 function Home() {
   const history = useHistory();
   const [data, setData] = useState([]);
   const [products, setProducts] = useState([]);
-  const {state} = CartState();
   const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
+  const {setIsAdmin} = useContext(AdminContext)
   const validateUser = async () => {
     try {
       const res = await fetch("/home", {
@@ -24,6 +23,9 @@ function Home() {
       const ResData = await res.json();
       setData(ResData);
       setIsLoggedIn(true);
+      if(ResData.isAdmin){
+        setIsAdmin(true)
+      }
       console.log("User",ResData);
     } catch (err) {
       history.push("/login");
@@ -44,7 +46,6 @@ function Home() {
       });
       const resData = await res.json();
       setProducts(resData)
-      console.log("Products",products)
     } catch (error) {
       console.log(error)
     }
@@ -53,6 +54,7 @@ function Home() {
   useEffect(() => {
     getAllProducts();
     validateUser();
+  // eslint-disable-next-line
   }, []);
   return (
     <>

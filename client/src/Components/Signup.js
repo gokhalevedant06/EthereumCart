@@ -67,7 +67,7 @@ function Signup() {
             onChange={onChange}
           />
           <button onClick={createUser}>
-            Create Account <i class="fas fa-sign-in-alt fa-1x"></i>{" "}
+            Create Account <i className="fas fa-sign-in-alt fa-1x"></i>{" "}
           </button>
         </div>
       </div>

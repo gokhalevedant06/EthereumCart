@@ -78,7 +78,6 @@ router.post("/login", async (req, res) => {
 
 router.get('/home',isAuthenticated,(req,res)=>{
   res.send(req.user);
-
 })
 
 router.post('/logout',(req,res)=>{

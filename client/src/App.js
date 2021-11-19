@@ -8,12 +8,16 @@ import Logout from "./Components/Logout";
 import "./App.css";
 import { UserContext } from "./Components/UserContext";
 import { useState } from "react";
+import { AdminContext } from "./Components/AdminContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   return (
     <>
+
       <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <AdminContext.Provider value={{isAdmin,setIsAdmin}}>
         <Router>
           <Navbar />
           <Switch>
@@ -34,6 +38,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
+        </AdminContext.Provider>
       </UserContext.Provider>
     </>
   );

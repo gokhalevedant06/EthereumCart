@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from './UserContext';
 function Login() {
   const history = useHistory();
-  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext)
+  const {setIsLoggedIn} = useContext(UserContext)
     const [loginUser, setLoginUser] = useState();
     const onChange = (e) => {
       setLoginUser({
@@ -55,7 +55,7 @@ function Login() {
           />
          
           <button onClick={userLogin}>
-            Login <i class="fas fa-sign-in-alt fa-1x"></i>{" "}
+            Login <i className="fas fa-sign-in-alt fa-1x"></i>{" "}
           </button>
 
         <Link to='signup'>
