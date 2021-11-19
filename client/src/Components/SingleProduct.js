@@ -39,7 +39,6 @@ const SingleProduct = ({ product }) => {
                           }
                       )
                   }}>Add To Cart</button></>:<><button onClick={()=>{
-                      console.log(state.cart)
                     dispatch(
                         {
                          type:'REMOVE_FROM_CART',
