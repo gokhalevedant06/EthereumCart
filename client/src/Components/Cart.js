@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { CartState } from "./Context";
+import { Link } from "react-router-dom";
+import { TotalContext } from "./TotalContext";
 
 function Cart() {
+  const {setFinalAmount} = useContext(TotalContext)
   const { state, dispatch } = CartState();
   const [total, setTotal] = useState(0);
-// eslint-disable-next-line
+  // eslint-disable-next-line
   useEffect(() => {
     setTotal(
       state.cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
@@ -22,7 +25,7 @@ function Cart() {
               <div className="product-details">
                 <div className="product-title">{product.productName}</div>
               </div>
-              <div className="product-price">${product.price}</div>
+              <div className="product-price">${product.price}<br /> {product.price*0.00025} ETH</div>
               <div className="product-quantity">
                 <input
                   type="number"
@@ -59,9 +62,15 @@ function Cart() {
       </div>
       <div className="cart_col">
         <h1>Subtotal ({state.cart.length}) items</h1>
-        <h1>${total}</h1>
-        <button className="checkout" onClick={()=>{
-        }}>Checkout</button>
+        <h1>Total Amount: ${total}</h1>
+        <h1>Total Amount in ETH: {total*0.00025} ETH</h1>
+        <Link to="/checkout">
+          <button className="checkout_button" onClick={() => {
+            setFinalAmount(total);
+          }}>
+            Checkout
+          </button>
+        </Link>
       </div>
     </>
   );

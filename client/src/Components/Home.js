@@ -59,12 +59,13 @@ function Home() {
   return (
     <>
     {
-      isLoggedIn ? <><h1>This is home page</h1>
-      <h4>{data.name}</h4>
-      <h4>{data.email}</h4>
+      isLoggedIn ? <>
+      <p className="home_welcome">Hello, {data.name} Welcome To Ethereum Cart</p>
+      {/* <h4>{data.email}</h4>
       {data.isAdmin ? <h4>Admin:True</h4>:<h4>Admin: False</h4>}
       <h4>{data.phone}</h4>
-      <h4>{data._id}</h4></> : <></>
+      <h4>{data._id}</h4> */}
+      </> : <></>
     }
 
 <div className="product_container">

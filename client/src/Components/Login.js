@@ -22,7 +22,7 @@ function Login() {
           data:loginUser
         });
         console.log(response);
-        window.alert(response.data)
+        // window.alert(response.data)
         setIsLoggedIn(true)
         history.push('/');
       } catch (error) {

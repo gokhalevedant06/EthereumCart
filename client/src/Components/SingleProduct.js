@@ -24,7 +24,8 @@ const SingleProduct = ({ product }) => {
         </div>
         <div className="color-price">
           <div className="price">
-            <span className="price_num">${product.price}</span>
+            <span className="price_num">${product.price} </span>
+            <span className="price_num"></span>
           </div>
         </div>
         <div className="button">
