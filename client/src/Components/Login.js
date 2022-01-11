@@ -58,8 +58,8 @@ function Login() {
             Login <i className="fas fa-sign-in-alt fa-1x"></i>{" "}
           </button>
 
-        <Link to='signup'>
-         <p>New User ?</p> </Link> 
+        <Link className='new-user-link' to='signup'>
+         <p className='new-user'>New User ?</p> </Link> 
         </div>
       </div>
         </>

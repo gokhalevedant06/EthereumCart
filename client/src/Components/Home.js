@@ -30,7 +30,6 @@ function Home() {
     } catch (err) {
       history.push("/login");
       console.log(err);
-      window.alert("You need to be logged in to access this page");
     }
   };
 

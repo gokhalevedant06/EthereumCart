@@ -17,6 +17,7 @@ router.post("/add", upload.single("image"), async (req, res) => {
   try {
     const { productName, description, price, rating } = req.body;
     const imageName = req.file.originalname;
+
     const product = new Product({
       productName,
       description,
@@ -42,10 +43,9 @@ router.get("/get",async(req,res)=>{
     }
 })
 
-router.delete('/delete',async(req,res)=>{
+router.post('/delete',async(req,res)=>{
     try {
         const {name} = req.body;
-        console.log(name)
         const response = await Product.deleteOne({productName:name});
         if(response){
             res.status(200).send("Product Deleted")

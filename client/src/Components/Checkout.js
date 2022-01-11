@@ -1,7 +1,7 @@
 import React, { useState, useContext,useEffect } from "react";
+import { useHistory } from "react-router";
 import { ethers } from "ethers";
 import { TotalContext } from "./TotalContext";
-
 
 const startPayment = async ({ setError, setTxs, ether, addr }) => {
   try {
@@ -17,6 +17,7 @@ const startPayment = async ({ setError, setTxs, ether, addr }) => {
       to: addr,
       value: ethers.utils.parseEther(ether),
     });
+    window.alert("Transaction Successful!!")
     console.log({ ether, addr });
     console.log("tx", tx);
     setTxs([tx]);
@@ -34,6 +35,7 @@ function Checkout() {
   // eslint-disable-next-line
   const [txs, setTxs] = useState([]);
   const [myAddress, setMyAddress] = useState()
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +48,9 @@ function Checkout() {
       ether: data.get("ether"),
       addr: data.get("addr"),
     });
+    setTimeout(()=>{
+      history.push("/");
+    },3000);
   };
 
   // eslint-disable-next-line 

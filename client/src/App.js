@@ -11,6 +11,7 @@ import { UserContext } from "./Components/UserContext";
 import { useState } from "react";
 import { AdminContext } from "./Components/AdminContext";
 import { TotalContext } from "./Components/TotalContext";
+import Manage from "./Components/Manage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,6 +42,9 @@ function App() {
                 </Route>
                 <Route path="/logout" exact>
                   <Logout />
+                </Route>
+                <Route path="/manage" exact>
+                  <Manage />
                 </Route>
               </Switch>
             </Router>
