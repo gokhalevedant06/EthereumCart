@@ -12,7 +12,7 @@ function AddProduct() {
     e.preventDefault();
     let image = file;
     console.log(image)
-    let form = new FormData;
+    let form = new FormData();
     form.append("productName",name);
     form.append("description",category);
     form.append("price",price);
